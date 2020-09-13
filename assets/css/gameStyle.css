@@ -1,4 +1,4 @@
-#welcomeScreen {
+.screen {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -6,6 +6,22 @@
   text-align: center;
   background-color: #0099e6;
   padding: 10px;
+}
+
+.instructionScreen {
+  z-index: -1;
+  display: none;
+  pointer-events: none;
+}
+
+.appearScreen {
+  z-index: 2;
+  pointer-events: all;
+}
+.disappearScreen {
+  z-index: -2;
+  display: none;
+  pointer-events: none;
 }
 
 .playerEntry h3 {
@@ -36,4 +52,12 @@
 }
 .btn:hover {
   background-color: #04cccc;
+}
+
+.instructionScreen p {
+  margin: 40px 0px;
+}
+.instructionScreen a {
+  color: black;
+  text-decoration: none;
 }
