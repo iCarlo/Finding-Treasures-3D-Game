@@ -1,4 +1,5 @@
 
+import { playGame } from "./gameLogic.js";
 import { createGameScene } from "./gameScene.js"
 import { showLoadingScreen, hideLoadingScreen } from "./loadingScreen.js"
 
@@ -10,6 +11,8 @@ window.addEventListener('DOMContentLoaded', () => {
     showLoadingScreen(canvas, engine)
 
     let scene = createGameScene(canvas, engine);
+
+    playGame(scene)
 
 
     scene.afterRender = () => {

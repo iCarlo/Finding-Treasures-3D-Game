@@ -70,3 +70,22 @@
   height: 100%;
   touch-action: none;
 }
+
+#timer {
+  color: #00e6e6;
+  position: absolute;
+  top: 3%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+#dashboard {
+  color: #00e6e6;
+  position: absolute;
+  top: 10%;
+  left: 3%;
+  width: 240px;
+}
+
+#dashboard .row:last-child {
+  margin-top: 10px;
+}

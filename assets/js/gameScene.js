@@ -16,10 +16,10 @@ let createGameScene = (canvas, engine) => {
     camera.keysLeft.push(65);
     camera.keysRight.push(68);
 
-    camera.speed = 0.4;
+    camera.speed = 0.3;
     camera.fov = 0.8;
     camera.checkCollisions = true;
-    // camera.applyGravity = true;
+    camera.applyGravity = true;
 
     camera.ellipsoid = new BABYLON.Vector3(1.5, 1.5, 1.5);
     camera.ellipsoidOffset = new BABYLON.Vector3(0, 1, 0);
@@ -27,7 +27,7 @@ let createGameScene = (canvas, engine) => {
     camera.angularSpeed = 0.01;
     camera.angle = Math.PI / 2;
     camera.direction = new BABYLON.Vector3(Math.cos(camera.angle), 0, Math.sin(camera.angle));
-    camera.setTarget(new BABYLON.Vector3(-3, 3, 0));
+    camera.setTarget(new BABYLON.Vector3(0, 3, 0));
     camera.attachControl(canvas, true);
 
 
@@ -36,6 +36,7 @@ let createGameScene = (canvas, engine) => {
     ground.material = new BABYLON.StandardMaterial("groundMat", scene);
     ground.material.diffuseColor = new BABYLON.Color3(0.70, 0.35, 0.00);
     ground.material.backFaceCulling = false;
+    ground.checkCollisions = true;
 
 
     // 3D Objects Construction
@@ -120,7 +121,6 @@ let createGameScene = (canvas, engine) => {
     ]
 
 
-
     const mainWall = BABYLON.MeshBuilder.ExtrudePolygon("mainWall", { shape: mainWallData, holes: mainWallHoleData, depth: 10, faceUV: faceUV }, scene);
     mainWall.material = new BABYLON.StandardMaterial("wall1Mat", scene);
     mainWall.material.diffuseTexture = new BABYLON.Texture('/assets/img/mainWall.jpg', scene);
@@ -152,7 +152,7 @@ let createGameScene = (canvas, engine) => {
 
     const blocks1 = BABYLON.MeshBuilder.ExtrudePolygon("blocks1", { shape: blocksData, depth: 10, faceUV: faceUV }, scene);
     blocks1.position.y = 10
-    blocks1.position.x = 27
+    blocks1.position.x = 28
     blocks1.position.z = -25
     blocks1.checkCollisions = true;
 
@@ -175,7 +175,7 @@ let createGameScene = (canvas, engine) => {
     blocks4.position.y = 10
     blocks4.position.x = -35
     blocks4.position.z = -25
-    blocks3.checkCollisions = true;
+    blocks4.checkCollisions = true;
 
 
     return scene;
