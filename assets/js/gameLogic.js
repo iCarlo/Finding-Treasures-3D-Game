@@ -1,5 +1,9 @@
 const playGame = (scene) => {
     const crystalCount = document.querySelector(".crystalCount h5")
+    const endScreen = document.querySelector(".endScreen")
+    const gameCanvas = document.querySelector("#renderCanvas")
+    const endMessage = document.querySelector(".screen p")
+    const time = document.querySelector('#timer h1')
     let count = 0
 
     // 5 minutes countdown timer
@@ -15,13 +19,26 @@ const playGame = (scene) => {
             display.textContent = minutes + ":" + seconds;
 
             if (--timer < 0) {
-                timer = duration;
+                stopTimer()
+                endScreen.classList.add('appearScreen')
+                gameCanvas.classList.add('disappearScreen')
+                time.classList.add('disappearScreen')
+                if (count != 5) {
+                    endMessage.textContent = 'You have been killed by the hidden ninjas and failed in you mission. May you rest in peace.'
+                } else {
+                    endMessage.textContent = 'You have successfully found all the crystal treasures. Congratulations.'
+                }
             }
         }, 1000);
     }
 
+    const stopTimer = () => {
+        clearInterval(startTimer)
+
+    }
+
     window.onload = () => {
-        var fiveMinutes = 60 * 5,
+        var fiveMinutes = 60 * 1,
             display = document.querySelector('#time');
         startTimer(fiveMinutes, display);
     };

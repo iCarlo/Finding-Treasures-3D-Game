@@ -39,6 +39,11 @@ button {
   font-family: "Press Start 2P", cursive;
 }
 
+a {
+  color: black;
+  text-decoration: none;
+}
+
 /* PAGE FORMATS */
 .container {
   width: 100%;

@@ -13,17 +13,24 @@
 
 .instructionScreen {
   z-index: -1;
-  display: none;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.endScreen {
+  z-index: -2;
+  opacity: 0;
   pointer-events: none;
 }
 
 .appearScreen {
-  z-index: 2;
+  z-index: 5;
+  opacity: 1;
   pointer-events: all;
 }
 .disappearScreen {
   z-index: -2;
-  display: none;
+  opacity: 0;
   pointer-events: none;
 }
 
@@ -60,10 +67,6 @@
 .instructionScreen p {
   margin: 40px 0px;
 }
-.instructionScreen a {
-  color: black;
-  text-decoration: none;
-}
 
 #renderCanvas {
   width: 100%;
@@ -88,4 +91,8 @@
 
 #dashboard .row:last-child {
   margin-top: 10px;
+}
+
+.endScreen p {
+  margin-bottom: 40px;
 }

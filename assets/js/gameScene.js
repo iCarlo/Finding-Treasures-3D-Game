@@ -10,7 +10,7 @@ let createGameScene = (canvas, engine) => {
 
 
     // Create Camera and Settings
-    const camera = new BABYLON.UniversalCamera("MyCamera", new BABYLON.Vector3(0, 3, -10), scene);
+    const camera = new BABYLON.UniversalCamera("MyCamera", new BABYLON.Vector3(0, 4, -10), scene);
     camera.keysUp.push(87);
     camera.keysDown.push(83);
     camera.keysLeft.push(65);
@@ -27,7 +27,7 @@ let createGameScene = (canvas, engine) => {
     camera.angularSpeed = 0.01;
     camera.angle = Math.PI / 2;
     camera.direction = new BABYLON.Vector3(Math.cos(camera.angle), 0, Math.sin(camera.angle));
-    camera.setTarget(new BABYLON.Vector3(0, 3, 0));
+    camera.setTarget(new BABYLON.Vector3(0, 4, 0));
     camera.attachControl(canvas, true);
 
 
