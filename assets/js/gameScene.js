@@ -1,71 +1,43 @@
 let createGameScene = (canvas, engine) => {
     // Create scene
-    let scene = new BABYLON.Scene(engine);
-    scene.gravity = new BABYLON.Vector3(0, -.4, 0);
-    scene.enablePhysics(scene.gravity, new BABYLON.CannonJSPlugin());
-
-    // Enable regular collisions as well
+    const scene = new BABYLON.Scene(engine);
+    scene.gravity = new BABYLON.Vector3(0, -0.9, 0);
     scene.collisionsEnabled = true;
-    scene.workerCollisions = true;
 
-    // Create camera
-    let camera = new BABYLON.UniversalCamera("Camera", new BABYLON.Vector3(2, 2, 2), scene);
-    camera.attachControl(canvas, true);
-    camera.setTarget(BABYLON.Vector3.Zero());
+    // create Light
+    const light = new BABYLON.PointLight('pointLight', new BABYLON.Vector3(0, 20, 0), scene);
+    light.intensity = 0.7
 
+
+    // Create Camera and Settings
+    const camera = new BABYLON.UniversalCamera("MyCamera", new BABYLON.Vector3(0, 3, 0), scene);
     camera.keysUp.push(87);
     camera.keysDown.push(83);
     camera.keysLeft.push(65);
     camera.keysRight.push(68);
 
-    camera.speed = 2;
-    // camera.fov = 0.8;
-    // camera.inertia = 0;
-
-    camera.ellipsoid = new BABYLON.Vector3(1.5, 0.5, 1.5);
+    camera.speed = 0.4;
+    camera.fov = 0.8;
     camera.checkCollisions = true;
-    camera.applyGravity = true;
+    // camera.applyGravity = true;
 
-    // Create lights
-    let light = new BABYLON.HemisphericLight("myLight", new BABYLON.Vector3(1, 1, 0), scene);
+    camera.ellipsoid = new BABYLON.Vector3(1.5, 1.5, 1.5);
+    camera.ellipsoidOffset = new BABYLON.Vector3(0, 1, 0);
 
-    let plane = BABYLON.MeshBuilder.CreatePlane("ground", {
-        height: 20,
-        width: 20
-    }, scene)
-    plane.rotate(BABYLON.Axis.X, Math.PI / 2, BABYLON.Space.WORLD);
-    plane.position.y = -2;
-
-    plane.collisionsEnabled = true;
-    plane.checkCollisions = true;
+    camera.angularSpeed = 0.01;
+    camera.angle = Math.PI / 2;
+    camera.direction = new BABYLON.Vector3(Math.cos(camera.angle), 0, Math.sin(camera.angle));
+    camera.setTarget(new BABYLON.Vector3(0, 3, 1));
+    camera.attachControl(canvas, true);
 
 
+    // Create Ground
+    const ground = BABYLON.MeshBuilder.CreateGround("ground", { width: 100, height: 65 }, scene);
+    ground.material = new BABYLON.StandardMaterial("groundMat", scene);
+    ground.material.diffuseColor = new BABYLON.Color3(0.70, 0.35, 0.00);
+    ground.material.backFaceCulling = false;
 
-    let sphere = BABYLON.MeshBuilder.CreateSphere("sphere", {}, scene);
-    sphere.collisionsEnabled = true;
-    sphere.checkCollisions = true;
 
-    let spherePhysicsImposter = new BABYLON.PhysicsImpostor(
-        sphere,
-        BABYLON.PhysicsImpostor.BoxImpostor,
-        {
-            mass: 3,
-            friction: 0.1,
-            restitution: 0
-        },
-        scene
-    );
-
-    let planePhysicsImposter = new BABYLON.PhysicsImpostor(
-        plane,
-        BABYLON.PhysicsImpostor.BoxImpostor,
-        {
-            mass: 0,
-            friction: 0.1,
-            restitution: .7
-        },
-        scene
-    );
 
 
     return scene;
