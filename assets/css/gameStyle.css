@@ -1,0 +1,39 @@
+#welcomeScreen {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  background-color: #0099e6;
+  padding: 10px;
+}
+
+.playerEntry h3 {
+  margin: 40px 0px 20px 0px;
+}
+
+.playerForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.playerForm input {
+  font-size: medium;
+  height: 30px;
+  max-width: 200px;
+}
+.playerForm button {
+  margin-top: 20px;
+}
+
+.btn {
+  background-color: #00e6e6;
+  border: 2px solid white;
+  border-radius: 5%;
+  height: 40px;
+  min-width: 150px;
+  cursor: pointer;
+}
+.btn:hover {
+  background-color: #04cccc;
+}
