@@ -10,7 +10,7 @@ let createGameScene = (canvas, engine) => {
 
 
     // Create Camera and Settings
-    const camera = new BABYLON.UniversalCamera("MyCamera", new BABYLON.Vector3(0, 3, 0), scene);
+    const camera = new BABYLON.UniversalCamera("MyCamera", new BABYLON.Vector3(0, 3, -10), scene);
     camera.keysUp.push(87);
     camera.keysDown.push(83);
     camera.keysLeft.push(65);
@@ -27,7 +27,7 @@ let createGameScene = (canvas, engine) => {
     camera.angularSpeed = 0.01;
     camera.angle = Math.PI / 2;
     camera.direction = new BABYLON.Vector3(Math.cos(camera.angle), 0, Math.sin(camera.angle));
-    camera.setTarget(new BABYLON.Vector3(0, 3, 1));
+    camera.setTarget(new BABYLON.Vector3(-3, 3, 0));
     camera.attachControl(canvas, true);
 
 
@@ -80,6 +80,45 @@ let createGameScene = (canvas, engine) => {
         new BABYLON.Vector3(10, 0, 49.8),
     ];
 
+    const libraryData = [
+        new BABYLON.Vector3(-27.5, 0, 0),
+        new BABYLON.Vector3(-17.5, 0, 0),
+        new BABYLON.Vector3(-17.5, 0, 8),
+        new BABYLON.Vector3(-5, 0, 8),
+        new BABYLON.Vector3(-5, 0, 0),
+        new BABYLON.Vector3(5, 0, 0),
+        new BABYLON.Vector3(5, 0, 8),
+        new BABYLON.Vector3(17.5, 0, 8),
+        new BABYLON.Vector3(17.5, 0, 0),
+        new BABYLON.Vector3(27.5, 0, 0),
+        new BABYLON.Vector3(27.5, 0, 10),
+        new BABYLON.Vector3(-27.5, 0, 10),
+    ];
+
+    const blocksData = [
+        new BABYLON.Vector3(0, 0, 0),
+        new BABYLON.Vector3(9, 0, 0),
+        new BABYLON.Vector3(9, 0, 5),
+        new BABYLON.Vector3(18, 0, 5),
+        new BABYLON.Vector3(18, 0, 10),
+        new BABYLON.Vector3(7, 0, 10),
+        new BABYLON.Vector3(7, 0, 7),
+        new BABYLON.Vector3(-1, 0, 7),
+        new BABYLON.Vector3(-1, 0, 10),
+        new BABYLON.Vector3(-9, 0, 10),
+        new BABYLON.Vector3(-9, 0, 4),
+        new BABYLON.Vector3(0, 0, 4),
+    ]
+
+    const thinBlockData = [
+        new BABYLON.Vector3(0, 0, 0),
+        new BABYLON.Vector3(40, 0, 0),
+        new BABYLON.Vector3(40, 0, 5),
+        new BABYLON.Vector3(5, 0, 5),
+        new BABYLON.Vector3(5, 0, 20),
+        new BABYLON.Vector3(0, 0, 20),
+    ]
+
 
 
     const mainWall = BABYLON.MeshBuilder.ExtrudePolygon("mainWall", { shape: mainWallData, holes: mainWallHoleData, depth: 10, faceUV: faceUV }, scene);
@@ -104,6 +143,39 @@ let createGameScene = (canvas, engine) => {
     wall2.position.x = 15
     wall2.position.z = -17.5
     wall2.checkCollisions = true;
+
+    const library = BABYLON.MeshBuilder.ExtrudePolygon("library", { shape: libraryData, depth: 20, faceUV: faceUV }, scene);
+    library.rotation.x = -Math.PI / 2
+    library.position.x = -18
+    library.position.z = 5
+    library.checkCollisions = true;
+
+    const blocks1 = BABYLON.MeshBuilder.ExtrudePolygon("blocks1", { shape: blocksData, depth: 10, faceUV: faceUV }, scene);
+    blocks1.position.y = 10
+    blocks1.position.x = 27
+    blocks1.position.z = -25
+    blocks1.checkCollisions = true;
+
+    const blocks2 = BABYLON.MeshBuilder.ExtrudePolygon("blocks2", { shape: blocksData, depth: 10, faceUV: faceUV }, scene);
+    blocks2.position.y = 10
+    blocks2.position.x = 28
+    blocks2.position.z = 15
+    blocks2.checkCollisions = true;
+
+
+    const blocks3 = BABYLON.MeshBuilder.ExtrudePolygon("blocks3", { shape: blocksData, depth: 10, faceUV: faceUV }, scene);
+    blocks3.position.y = 10
+    blocks3.rotation.y = BABYLON.Tools.ToRadians(180)
+    blocks3.position.x = 37
+    blocks3.position.z = 5
+    blocks3.checkCollisions = true;
+
+
+    const blocks4 = BABYLON.MeshBuilder.ExtrudePolygon("blocks4", { shape: thinBlockData, depth: 10, faceUV: faceUV }, scene);
+    blocks4.position.y = 10
+    blocks4.position.x = -35
+    blocks4.position.z = -25
+    blocks3.checkCollisions = true;
 
 
     return scene;
