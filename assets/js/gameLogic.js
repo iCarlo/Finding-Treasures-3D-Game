@@ -66,12 +66,13 @@ const playGame = (scene) => {
                 })
         );
 
-        if (cube.intersectsMesh(scene.getMeshByName("library"), true) || cube.intersectsMesh(scene.getMeshByName("block1"), true) || cube.intersectsMesh(scene.getMeshByName("block2"), true) || cube.intersectsMesh(scene.getMeshByName("block3"), true) || cube.intersectsMesh(scene.getMeshByName("block4"), true)) {
-            cube.dispose()
-            console.log("hit")
-        } else {
-            n += 1
-        }
+        n += 1
+        // if (cube.intersectsMesh(scene.getMeshByName("library"), true) || cube.intersectsMesh(scene.getMeshByName("block1"), true) || cube.intersectsMesh(scene.getMeshByName("block2"), true) || cube.intersectsMesh(scene.getMeshByName("block3"), true) || cube.intersectsMesh(scene.getMeshByName("block4"), true)) {
+        //     cube.dispose()
+        //     console.log("hit")
+        // } else {
+        //     n += 1
+        // }
 
 
     }
