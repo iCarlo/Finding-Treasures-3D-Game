@@ -45,7 +45,9 @@ const playGame = (scene) => {
 
 
     // random cube placements
-    for (let i = 0; i < 5; i++) {
+    let n = 0
+
+    while (n < 5) {
         let cube = BABYLON.MeshBuilder.CreateBox("cube", { size: 0.5 }, scene);
         cube.material = new BABYLON.StandardMaterial("cubeMat", scene);
         cube.material.diffuseColor = new BABYLON.Color3(0.00, 0.80, 0.80);
@@ -53,7 +55,6 @@ const playGame = (scene) => {
         cube.position.y = 0.25
         cube.position.x = Math.random() < 0.5 ? Math.floor(-(Math.random() * 30) + 1) : Math.floor((Math.random() * 30) + 1);
         cube.position.z = Math.random() < 0.5 ? Math.floor(-(Math.random() * 47) + 1) : Math.floor((Math.random() * 47) + 1);
-
 
         cube.actionManager = new BABYLON.ActionManager(scene);
         cube.actionManager.registerAction(
@@ -64,7 +65,18 @@ const playGame = (scene) => {
                     cube.dispose()
                 })
         );
+
+        if (cube.intersectsMesh(scene.getMeshByName("library"), true) || cube.intersectsMesh(scene.getMeshByName("block1"), true) || cube.intersectsMesh(scene.getMeshByName("block2"), true) || cube.intersectsMesh(scene.getMeshByName("block3"), true) || cube.intersectsMesh(scene.getMeshByName("block4"), true)) {
+            cube.dispose()
+            console.log("hit")
+        } else {
+            n += 1
+        }
+
+
     }
+    console.log(scene.getMeshByName("library"))
+
 }
 
 export {
